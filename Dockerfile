@@ -28,17 +28,22 @@ RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype
     && docker-php-ext-install soap \
     && requirementsToRemove="libpng12-dev libmcrypt-dev libcurl3-dev libpng12-dev libfreetype6-dev libjpeg-turbo8-dev" \
     && apt-get purge --auto-remove -y $requirementsToRemove
+    
 
 RUN chsh -s /bin/bash www-data
 
-RUN cd /tmp && \ 
-  curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
-  tar xvf $MAGENTO_VERSION.tar.gz && \
-  mv magento2-$MAGENTO_VERSION/* magento2-$MAGENTO_VERSION/.htaccess $INSTALL_DIR
+RUN apt-get install git
+RUN cd /var/www/html
+Run git clone https://github.com/ChandradeepKumar/magento21.git 
+
+#RUN cd /tmp && \ 
+ # curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
+ # tar xvf $MAGENTO_VERSION.tar.gz && \
+ # mv magento2-$MAGENTO_VERSION/* magento2-$MAGENTO_VERSION/.htaccess $INSTALL_DIR
 
 RUN chown -R www-data:www-data /var/www
-RUN su www-data -c "cd $INSTALL_DIR && composer install"
-RUN su www-data -c "cd $INSTALL_DIR && composer config repositories.magento composer https://repo.magento.com/"  
+#RUN su www-data -c "cd $INSTALL_DIR && composer install"
+#RUN su www-data -c "cd $INSTALL_DIR && composer config repositories.magento composer https://repo.magento.com/"  
 
 RUN cd $INSTALL_DIR \
     && find . -type d -exec chmod 770 {} \; \
