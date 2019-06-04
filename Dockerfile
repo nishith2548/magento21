@@ -32,9 +32,9 @@ RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype
 
 RUN chsh -s /bin/bash www-data
 
-RUN apt-get install -y git-core
-RUN cd /var/www/html
-Run git clone https://github.com/ChandradeepKumar/magento21.git 
+#RUN apt-get install -y git-core
+#RUN cd /var/www/html
+#RUN git clone https://github.com/ChandradeepKumar/magento21.git 
 
 #RUN cd /tmp && \ 
  # curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
