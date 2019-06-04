@@ -36,7 +36,7 @@ pipeline
           steps
           {
             sh 'docker rm -f cont2'
-            sh 'docker run --name cont2 -i -d -p 9095:80 image1 '
+            sh 'docker run --name cont2 -i -d -p 9095:80 magento21 '
           }
       }
   }  
