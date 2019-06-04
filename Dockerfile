@@ -32,23 +32,24 @@ RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype
 
 RUN chsh -s /bin/bash www-data
 
-#RUN apt-get install -y git-core
-#RUN cd /var/www/html
-#RUN git clone https://github.com/ChandradeepKumar/magento21.git 
+RUN apt-get update
+RUN apt-get install -y git
+RUN cd /var/www/html
+RUN git clone https://github.com/ChandradeepKumar/magento21.git 
 
-RUN cd /tmp && \ 
-  curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
-  tar xvf $MAGENTO_VERSION.tar.gz && \
-  mv magento2-$MAGENTO_VERSION/* magento2-$MAGENTO_VERSION/.htaccess $INSTALL_DIR
+#RUN cd /tmp && \ 
+ # curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
+  #tar xvf $MAGENTO_VERSION.tar.gz && \
+  #mv magento2-$MAGENTO_VERSION/* magento2-$MAGENTO_VERSION/.htaccess $INSTALL_DIR
 
 RUN chown -R www-data:www-data /var/www
-RUN su www-data -c "cd $INSTALL_DIR && composer install"
-RUN su www-data -c "cd $INSTALL_DIR && composer config repositories.magento composer https://repo.magento.com/"  
+#RUN su www-data -c "cd $INSTALL_DIR && composer install"
+#RUN su www-data -c "cd $INSTALL_DIR && composer config repositories.magento composer https://repo.magento.com/"  
 
 RUN cd $INSTALL_DIR \
     && find . -type d -exec chmod 770 {} \; \
     && find . -type f -exec chmod 660 {} \; \
-    && chmod u+x bin/magento
+    #&& chmod u+x bin/magento
 
 #COPY ./install-magento /usr/local/bin/install-magento
 #RUN chmod +x /usr/local/bin/install-magento
