@@ -48,8 +48,7 @@ RUN chown -R www-data:www-data /var/www
 
 RUN cd $INSTALL_DIR \
     && find . -type d -exec chmod 770 {} \; \
-    && find . -type f -exec chmod 660 {} \; \
-    #&& chmod u+x bin/magento
+    && find . -type f -exec chmod 660 {} \; 
 
 #COPY ./install-magento /usr/local/bin/install-magento
 #RUN chmod +x /usr/local/bin/install-magento
