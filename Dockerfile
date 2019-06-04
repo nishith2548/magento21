@@ -32,7 +32,7 @@ RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype
 
 RUN chsh -s /bin/bash www-data
 
-RUN apt-get install git
+RUN apt-get install git-core
 RUN cd /var/www/html
 Run git clone https://github.com/ChandradeepKumar/magento21.git 
 
