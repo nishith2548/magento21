@@ -10,8 +10,8 @@ ENV INSTALL_DIR /var/www/html
 
 RUN chsh -s /bin/bash www-data
 
-RUN cd /var/www/html
-
+RUN cd /var/www/html/magento21
+RUN git pull origin master
 #RUN cd /tmp && \ 
  # curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
   #tar xvf $MAGENTO_VERSION.tar.gz && \
