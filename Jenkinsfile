@@ -26,7 +26,7 @@ pipeline
 	    {
 	        steps
 	        {
-		          sh 'docker build -t magento21 .' //build image
+		          sh 'docker build -t magento_21 .' //build image
 	        }
 	    }
   
@@ -36,7 +36,7 @@ pipeline
           steps
           {
             sh 'docker rm -f cont2'
-            sh 'docker run --name cont2 -i -d -p 9095:80 magento21 '
+            sh 'docker run --name cont2 -i -d -p 9095:80 magento_21 '
           }
       }
   }  
