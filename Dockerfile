@@ -12,7 +12,7 @@ RUN chsh -s /bin/bash www-data
 RUN apt-get update
 RUN apt-get install -y git
 RUN cd /var/www/html
-RUN git pull oringin master
+
 #RUN cd /tmp && \ 
  # curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
   #tar xvf $MAGENTO_VERSION.tar.gz && \
