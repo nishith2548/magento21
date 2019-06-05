@@ -1,41 +1,14 @@
-FROM quay.io/alexcheng1982/apache2-php7:7.0.32
+FROM deepu157915/magento21
 
-LABEL maintainer="alexcheng1982@gmail.com"
-LABEL php_version="7.0.32"
-LABEL magento_version="2.1.17"
-LABEL description="Magento 2.1.17 with PHP 7.0.32"
+LABEL maintainer="Chandradeep"
 
 ENV MAGENTO_VERSION 2.1.17
 ENV INSTALL_DIR /var/www/html
-ENV COMPOSER_HOME /var/www/.composer/
 
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+
 #COPY ./auth.json $COMPOSER_HOME
 
-RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libjpeg-turbo8 libjpeg-turbo8-dev libpng12-dev libfreetype6-dev libicu-dev libxslt1-dev unzip" \
-    && apt-get update \
-    && apt-get install -y $requirements \
-    && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install mcrypt \
-    && docker-php-ext-install mbstring \
-    && docker-php-ext-install zip \
-    && docker-php-ext-install intl \
-    && docker-php-ext-install xsl \
-    && docker-php-ext-install soap \
-    && requirementsToRemove="libpng12-dev libmcrypt-dev libcurl3-dev libpng12-dev libfreetype6-dev libjpeg-turbo8-dev" \
-    && apt-get purge --auto-remove -y $requirementsToRemove
-    
-
 RUN chsh -s /bin/bash www-data
-
-RUN apt-get update
-RUN apt-get install -y git
-RUN cd /var/www/html
-RUN git clone https://github.com/ChandradeepKumar/magento21.git 
 
 #RUN cd /tmp && \ 
  # curl https://codeload.github.com/magento/magento2/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && \
