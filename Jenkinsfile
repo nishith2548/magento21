@@ -26,7 +26,7 @@ pipeline
 	    {
 	        steps
 	        {
-		          sh 'docker build -t magento_21 .' //build image
+		          powershell 'docker build -t magento_21 .' //build image
 	        }
 	    }
   
