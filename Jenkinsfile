@@ -26,7 +26,7 @@ pipeline
 	    {
 	        steps
 	        {
-		          sh 'docker build -t magento_21 .' //build image
+		          powershell 'docker build -t magento_21 .' //build image
 	        }
 	    }
   
@@ -35,8 +35,8 @@ pipeline
       {
           steps
           {
-            sh 'docker rm -f cont2'
-            sh 'docker run --name cont2 -i -d -p 9095:80 magento_21 '
+            powershell 'docker rm -f cont2'
+            powershell 'docker run --name cont2 -i -d -p 9095:80 magento_21 '
           }
       }
   }  
