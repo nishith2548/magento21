@@ -9,8 +9,7 @@ ENV INSTALL_DIR /var/www/html
 #COPY ./auth.json $COMPOSER_HOME
 
 RUN chsh -s /bin/bash www-data
-RUN apt-get update
-RUN apt-get install -y git
+
 RUN cd /var/www/html
 
 #RUN cd /tmp && \ 
